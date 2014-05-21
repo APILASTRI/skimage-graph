@@ -5,10 +5,10 @@ A graph data structure for skimage. Intended for GSoC 2014
 
 ### Benchmarking
 ```shell
-> python test.py number
+> python test.py n
 ```
-where `number` in an integer.
-The code will construct a cycle with n nodes and n edges, and keep merging edges till there are onyl 3 nodes left.
+where `n` in an integer.
+The code will construct a cycle with `n` nodes and `n` edges, and keep merging edges till there are onyl 3 nodes left.
 
 
 ### Results
