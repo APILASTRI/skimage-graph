@@ -8,7 +8,7 @@ A graph data structure for skimage. Intended for GSoC 2014
 > python test.py n
 ```
 where `n` in an integer.
-The code will construct a cycle with `n` nodes and `n` edges, and keep merging edges till there are onyl 3 nodes left.
+The code will construct a cycle with `n` nodes and `n` edges, and keep merging edges till there are only 3 nodes left.
 
 
 ### Results
