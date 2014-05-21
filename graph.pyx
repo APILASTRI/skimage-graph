@@ -107,57 +107,47 @@ cdef merge_node(object[:] rows,object[:] data, cnp.int_t x, cnp.int_t y):
     n = idx
     new_row_view  = new_row_view[0:n]
     new_data_view = new_data_view[0:n]
-    #print "new adj list of",y,np.array(new_row_view)
-        
+            
     idx = 0
     while idx < n :
 
-        #print "idx = ",idx
         v = new_row_view[idx]
         wt_x = wt_y = -1
         
-        # search if node was connected to i
-        # if yes, delete the link to i and 
+        # search if node was connected to `x`
+        # if yes, delete the link to `x` and 
         # record the weight
-        #print "looking for",x,"in",v
-        #print rows[v]
+
         idx_of_x = np.searchsorted(rows[v], x)
 
         if   idx_of_x < rows[v].shape[0] and rows[v][idx_of_x] == x :
-            #print "found"
-            # node i was there in the list
-            # we don't need no `i`
+
+            # node `x` was there in the list
+            # we don't need no `x`
             wt_x = data[v][idx_of_x]
-            #print "wt_x = ",wt_x
+
             rows[v] = np.delete(rows[v], idx_of_x)
             data[v] = np.delete(data[v], idx_of_x)
 
-        # search if node was connected to j
+        # search if node was connected to `y`
         # if yes record the weight
-        #print "looking for",y,"in",v
-        #print rows[v]
         idx_of_y = np.searchsorted(rows[v], y)
 
 
         if  idx_of_y < rows[v].shape[0] and rows[v][idx_of_y] == y :
-            #j was in the list... Peace ! :)
-            #print "found"
+            #`y` was in the list... Peace ! :)
             wt_y = data[v][idx_of_y]
             weight = max(wt_x, wt_y)
 
-            #print "replacing weight with",weight 
             # we just need to update the weight in both places
             data[v][idx_of_y ] = weight
             new_data_view[idx] = weight
 
         else:
-            # j ins't in the list
+            # `y` ins't in the list
     
             weight = wt_x
-            #print wt_x,wt_y,weight
-            #print rows[v]
-            #print "inserting weight",weight
-            #insert j where it should be
+            #insert `y` where it should be
             rows[v] = np.insert(rows[v], idx_of_y, y )
         
             #insert the weight where it should go
