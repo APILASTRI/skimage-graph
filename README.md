@@ -15,20 +15,20 @@ The code will construct a cycle with n nodes and n edges, and keep merging edges
 
 ```shell
 vighnesh@viggie-pc:skimage-graph > python test.py 10
-Constructing took %d s 0.000922918319702
-Merging took %d s 0.00173687934875
+Constructing took 0.000924 s
+Merging took 0.001806 s
 vighnesh@viggie-pc:skimage-graph > python test.py 100
-Constructing took %d s 0.00857901573181
-Merging took %d s 0.0186810493469
+Constructing took 0.008928 s
+Merging took 0.020233 s
 vighnesh@viggie-pc:skimage-graph > python test.py 1000
-Constructing took %d s 0.0851612091064
-Merging took %d s 0.19070315361
+Constructing took 0.086023 s
+Merging took 0.191397 s
 vighnesh@viggie-pc:skimage-graph > python test.py 10000
-Constructing took %d s 0.852421998978
-Merging took %d s 1.90656590462
+Constructing took 0.849043 s
+Merging took 1.884101 s
 vighnesh@viggie-pc:skimage-graph > python test.py 100000
-Constructing took %d s 8.53914999962
-Merging took %d s 19.268034935
+Constructing took 8.294484 s
+Merging took 18.534647 s
 ```
 
 When the degrees are small, merging one edge takes near constant time.
