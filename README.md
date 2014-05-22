@@ -27,7 +27,7 @@ The code will construct a cycle with `n` nodes and `n` edges, and keep merging e
 ## Results
 ###Speed
 
-```shell
+```bash
 vighnesh@viggie-pc:skimage-graph > python test.py 10
 Constructing took 0.000020 s
 Merging took 0.000207 s
