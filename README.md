@@ -10,7 +10,7 @@ A graph data structure for skimage. Intended for GSoC 2014
 * Merging nodes is faster because lookup takes constant time.
 
 ### Further Imporovements
-* Number of nodes in the graph need not remain constant. Therefore `Graph.rows` need not be a static never changing list. It can be a dictionary mapping vertex number to Adjacency Dictionary
+* Number of nodes in the graph need not remain constant. Therefore `Graph.rows` need not be a static never changing list. It can be a dictionary mapping vertex number to Adjacency Dictionary. Rather than keeping empty nodes, this will allow quick deletion of them.
 * Node properties can be stored using a dictionary
 * Edge properties can be stored by using a dictionary to map `(i,j) -> value`
 * Each node will also contain a list of labels. If node `x` has label `1` and node `y` has label `2`. The new merged nodes label list will become `[1,2]`.
