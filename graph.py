@@ -1,5 +1,6 @@
 import numpy as np
 import pygraphviz as pgv
+import random
 
 
 class Graph(object):
@@ -9,6 +10,8 @@ class Graph(object):
         # TODO : Why shoukd this be a list, can't this be a dict as well
         # Number of vertices do not remain the same
         self.rows = [{} for i in range(n)]
+        self.edge_count = 0
+        self.vertex_count = n
 
     def display(self):
         for i in range(len(self.rows)):
@@ -17,6 +20,11 @@ class Graph(object):
                     print "(%d,%d) -> %d" % (i, key, self.rows[i][key])
 
     def make_edge(self, i, j, wt):
+        try :
+            self.rows[i][j]
+        except KeyError :
+            self.edge_count += 1
+
         self.rows[i][j] = wt
         self.rows[j][i] = wt
 
@@ -66,3 +74,15 @@ class Graph(object):
 
         g.layout('circo')
         g.draw(name)
+
+    def random_merge(self):
+        
+        n = self.vertex_count
+        while n > 10 :
+            i = random.randint(0,self.vertex_count-1)
+            if len(self.rows[i].keys()) > 0 :
+                k = random.choice(self.rows[i].keys())
+                self.merge(i,k)
+                n -= 1
+            
+            
