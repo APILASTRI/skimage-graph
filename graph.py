@@ -1,4 +1,3 @@
-import numpy as np
 import pygraphviz as pgv
 import random
 
@@ -20,9 +19,9 @@ class Graph(object):
                     print "(%d,%d) -> %d" % (i, key, self.rows[i][key])
 
     def make_edge(self, i, j, wt):
-        try :
+        try:
             self.rows[i][j]
-        except KeyError :
+        except KeyError:
             self.edge_count += 1
 
         self.rows[i][j] = wt
@@ -76,13 +75,11 @@ class Graph(object):
         g.draw(name)
 
     def random_merge(self):
-        
+
         n = self.vertex_count
-        while n > 10 :
-            i = random.randint(0,self.vertex_count-1)
-            if len(self.rows[i].keys()) > 0 :
+        while n > 10:
+            i = random.randint(0, self.vertex_count - 1)
+            if len(self.rows[i].keys()) > 0:
                 k = random.choice(self.rows[i].keys())
-                self.merge(i,k)
+                self.merge(i, k)
                 n -= 1
-            
-            
