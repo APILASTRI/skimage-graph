@@ -17,13 +17,12 @@ img = tf.imread('../data/image.tif')
 boundary = tf.imread('../data/prob.tif')
 
 boundary = img_as_float(boundary)
-boundary = gf(boundary,5)
+boundary = gf(boundary, 5)
 raw_input("Enter")
 
 
 seed_mask = boundary < 0.01
-seed_label,n = label(seed_mask)
+seed_label, n = label(seed_mask)
 
 print "Found %d Seeds" % n
 w = watershed(img, seed_label)
-
