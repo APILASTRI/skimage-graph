@@ -10,19 +10,21 @@ from skimage.morphology import watershed
 from scipy.ndimage import label
 from scipy.ndimage.filters import gaussian_filter as gf
 from skimage.util import img_as_float
-from scipy.ndimage.measurements import watershed_ift
 
-slice = 200
+threshold = 0.005
+sigma = 1
 img = tf.imread('../data/image.tif')
 boundary = tf.imread('../data/prob.tif')
 
-boundary = img_as_float(boundary)
-boundary = gf(boundary, 5)
-raw_input("Enter")
+boundary = boundary.astype(np.float32)/255
+boundary = gf(boundary, sigma)
 
 
 seed_mask = boundary < 0.01
 seed_label, n = label(seed_mask)
+del seed_mask
+del boundary
 
 print "Found %d Seeds" % n
 w = watershed(img, seed_label)
+np.save("watershed",w)
