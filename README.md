@@ -18,10 +18,9 @@ A graph data structure for skimage. Intended for GSoC 2014
 
 ### Testing
 ```shell
-> python test.py n
+> python test.py
 ```
-where `n` in an integer.
-The code will construct a cycle with `n` nodes and `n` edges, and keep merging edges till there are only 3 nodes left.
+
 
 
 ## Results
