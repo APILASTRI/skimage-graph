@@ -68,7 +68,7 @@ Line #    Mem usage    Increment   Line Contents
 
 ###Size Test
 These are the results of running `size_test.py` with different arguments. Thanks to @dhruv13j and his new laptop for generating the results.
-```bash
+```
 C:\Users\dhruv\Desktop\skimage-graph-master>python size_test.py 10
 RSS = 9 MB
 VMS = 5 MB
