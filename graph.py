@@ -11,6 +11,7 @@ class Graph(object):
         self.rows = [{} for i in range(n)]
         self.edge_count = 0
         self.vertex_count = n
+        self.prop = {}
 
     def display(self):
         for i in range(len(self.rows)):
@@ -18,7 +19,7 @@ class Graph(object):
                 if key < i:
                     print "(%d,%d) -> %d" % (i, key, self.rows[i][key])
 
-    def make_edge(self, i, j, wt):
+    def make_edge(self, i, j, wt, prop = 100):
         try:
             self.rows[i][j]
         except KeyError:
@@ -26,6 +27,8 @@ class Graph(object):
 
         self.rows[i][j] = wt
         self.rows[j][i] = wt
+
+        self.prop[(i,j)] = prop
 
     def merge(self, i, j):
         # we merge i into j and delete the contents of i
