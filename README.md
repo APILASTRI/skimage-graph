@@ -66,3 +66,31 @@ Line #    Mem usage    Increment   Line Contents
     19  527.062 MiB    0.000 MiB       g.display()
 ```
 
+###Size Test
+These are the results of running `size_test.py` with different arguments. Thanks to @dhruv13j and his new laptop for generating the results.
+```bash
+C:\Users\dhruv\Desktop\skimage-graph-master>python size_test.py 10
+RSS = 9 MB
+VMS = 5 MB
+
+C:\Users\dhruv\Desktop\skimage-graph-master>python size_test.py 100
+RSS = 9 MB
+VMS = 5 MB
+
+C:\Users\dhruv\Desktop\skimage-graph-master>python size_test.py 1000
+RSS = 13 MB
+VMS = 9 MB
+
+C:\Users\dhruv\Desktop\skimage-graph-master>python size_test.py 10000
+RSS = 45 MB
+VMS = 41 MB
+
+C:\Users\dhruv\Desktop\skimage-graph-master>python size_test.py 100000
+RSS = 349 MB
+VMS = 350 MB
+
+C:\Users\dhruv\Desktop\skimage-graph-master>python size_test.py 1000000
+RSS = 3355 MB
+VMS = 3409 MB
+```
+
