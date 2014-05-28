@@ -67,30 +67,62 @@ Line #    Mem usage    Increment   Line Contents
 ```
 
 ###Size Test
-These are the results of running `size_test.py` with different arguments. Thanks to @dhruv13j and his new laptop for generating the results.
+**Scipy CSR**
 ```
-C:\Users\dhruv\Desktop\skimage-graph-master>python size_test.py 10
-RSS = 9 MB
-VMS = 5 MB
+vighnesh@viggie-pc:skimage-graph > python csr_test.py 10
+RSS = 20 MB
+VMS = 134 MB
+vighnesh@viggie-pc:skimage-graph > python csr_test.py 100
+RSS = 20 MB
+VMS = 134 MB
+vighnesh@viggie-pc:skimage-graph > python csr_test.py 1000
+RSS = 22 MB
+VMS = 136 MB
+vighnesh@viggie-pc:skimage-graph > python csr_test.py 10000
+RSS = 41 MB
+VMS = 155 MB
+vighnesh@viggie-pc:skimage-graph > python csr_test.py 100000
+RSS = 222 MB
+VMS = 337 MB
+```
 
-C:\Users\dhruv\Desktop\skimage-graph-master>python size_test.py 100
-RSS = 9 MB
-VMS = 5 MB
 
-C:\Users\dhruv\Desktop\skimage-graph-master>python size_test.py 1000
-RSS = 13 MB
-VMS = 9 MB
-
-C:\Users\dhruv\Desktop\skimage-graph-master>python size_test.py 10000
+**Custom Class**
+```
+vighnesh@viggie-pc:skimage-graph > python size_test.py 10
+RSS = 10 MB
+VMS = 50 MB
+vighnesh@viggie-pc:skimage-graph > python size_test.py 100
+RSS = 10 MB
+VMS = 50 MB
+vighnesh@viggie-pc:skimage-graph > python size_test.py 1000
+RSS = 14 MB
+VMS = 53 MB
+vighnesh@viggie-pc:skimage-graph > python size_test.py 10000
 RSS = 45 MB
-VMS = 41 MB
+VMS = 85 MB
+vighnesh@viggie-pc:skimage-graph > python size_test.py 100000
+RSS = 350 MB
+VMS = 390 MB
 
-C:\Users\dhruv\Desktop\skimage-graph-master>python size_test.py 100000
-RSS = 349 MB
-VMS = 350 MB
+```
 
-C:\Users\dhruv\Desktop\skimage-graph-master>python size_test.py 1000000
-RSS = 3355 MB
-VMS = 3409 MB
+**Networkx Graph**
+```
+vighnesh@viggie-pc:skimage-graph > python nx_test.py 10
+RSS = 16 MB
+VMS = 71 MB
+vighnesh@viggie-pc:skimage-graph > python nx_test.py 100
+RSS = 16 MB
+VMS = 71 MB
+vighnesh@viggie-pc:skimage-graph > python nx_test.py 1000
+RSS = 21 MB
+VMS = 76 MB
+vighnesh@viggie-pc:skimage-graph > python nx_test.py 10000
+RSS = 71 MB
+VMS = 126 MB
+vighnesh@viggie-pc:skimage-graph > python nx_test.py 100000
+RSS = 567 MB
+VMS = 621 MB
 ```
 
