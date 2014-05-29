@@ -1,6 +1,6 @@
 import pygraphviz as pgv
 import random
-
+import rag_custom
 
 class Graph(object):
 
@@ -77,12 +77,17 @@ class Graph(object):
         g.layout('circo')
         g.draw(name)
 
-    def random_merge(self):
+    def random_merge(self,minimum):
 
         n = self.vertex_count
-        while n > 10:
+        while n > minimum:
             i = random.randint(0, self.vertex_count - 1)
             if len(self.rows[i].keys()) > 0:
                 k = random.choice(self.rows[i].keys())
                 self.merge(i, k)
                 n -= 1
+
+
+def construct_rag(arr):
+    return rag_custom.construct_rag_3d_custom(arr)
+

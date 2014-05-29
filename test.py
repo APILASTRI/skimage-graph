@@ -1,18 +1,23 @@
 import time
-import rag
 import numpy as np
+import graph_custom as graph
+
+
+
+try :
+    profile
+except NameError:
+    def profile(x):
+        return x
 
 
 def test():
     arr = np.load("../data/watershed.npy")
     t = time.time()
-    g = rag.construct_rag_3d(arr)
-    print "Edges = ", g.edge_count
-    print "RAG Construction took %f s" % (time.time() - t)
+    g = graph.construct_rag(arr)
     t = time.time()
 
-    g.random_merge()
-    print "Merging took %f s" % (time.time() - t)
+    g.random_merge(10)
     g.display()
 
 test()
