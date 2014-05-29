@@ -1,128 +1,34 @@
 skimage-graph
 =============
 
-A graph data structure for skimage. Intended for GSoC 2014
-
-### Implemenetaion
-
-* Each node holds a dictionary which maps adjacent nodes to their corresponding weihgts. Let's call this **Adjacency Dictionary**
-* This approach is atleast `30x` faster than the last one
-* Merging nodes is faster because lookup takes constant time.
-
-### Further Imporovements
-* Number of nodes in the graph need not remain constant. Therefore `Graph.rows` need not be a static never changing list. It can be a dictionary mapping vertex number to Adjacency Dictionary. Rather than keeping empty nodes, this will allow quick deletion of them.
-* Node properties can be stored using a dictionary
-* Edge properties can be stored by using a dictionary to map `(i,j) -> value`
-* Each node will also contain a list of labels. If node `x` has label `1` and node `y` has label `2`. The new merged nodes label list will become `[1,2]`.
 
 
-### Testing
-```shell
-> python test.py
-```
+# Results
+## Custom class
 
-
-
-## Results
-###Speed
-
-```bash
-vighnesh@viggie-pc:skimage-graph > python test.py 
-Edges =  39739
-RAG Construction took 41.805317 s
-Merging took 23.589030 s
-(3485,3121) -> 1
-(3817,3121) -> 1
-(3817,3485) -> 1
-(9868,3121) -> 1
-(12695,3817) -> 1
-(12695,3485) -> 1
-(14658,3817) -> 1
-(14658,3121) -> 1
-(14658,3485) -> 1
-(15038,14658) -> 1
-(15038,3817) -> 1
-(15038,3121) -> 1
-(15038,3485) -> 1
-(18004,3485) -> 1
-(19279,3485) -> 1
-```
-
-###Memory 
+**Memory**
 ```
 Line #    Mem usage    Increment   Line Contents
 ================================================
-     8   38.660 MiB    0.000 MiB   @profile
-     9                             def test():
-    10  516.410 MiB  477.750 MiB       arr = np.load("../data/watershed.npy")
-    11  516.410 MiB    0.000 MiB       t = time.time()
-    12  527.418 MiB   11.008 MiB       g = rag.construct_rag_3d(arr)
-    13  527.422 MiB    0.004 MiB       print "Edges = ",g.edge_count
-    14  527.422 MiB    0.000 MiB       print "RAG Construction took %f s" % (time.time() - t)
-    15  527.422 MiB    0.000 MiB       t = time.time()
-    16                                 
-    17  527.062 MiB   -0.359 MiB       g.random_merge()
-    18  527.062 MiB    0.000 MiB       print "Merging took %f s" % (time.time() - t)
-    19  527.062 MiB    0.000 MiB       g.display()
-```
-
-###Size Test
-**Scipy CSR**
-```
-vighnesh@viggie-pc:skimage-graph > python csr_test.py 10
-RSS = 20 MB
-VMS = 134 MB
-vighnesh@viggie-pc:skimage-graph > python csr_test.py 100
-RSS = 20 MB
-VMS = 134 MB
-vighnesh@viggie-pc:skimage-graph > python csr_test.py 1000
-RSS = 22 MB
-VMS = 136 MB
-vighnesh@viggie-pc:skimage-graph > python csr_test.py 10000
-RSS = 41 MB
-VMS = 155 MB
-vighnesh@viggie-pc:skimage-graph > python csr_test.py 100000
-RSS = 222 MB
-VMS = 337 MB
+    13   18.176 MiB    0.000 MiB   @profile
+    14                             def test():
+    15  496.133 MiB  477.957 MiB       arr = np.load("../data/watershed.npy")
+    16  496.133 MiB    0.000 MiB       t = time.time()
+    17  507.359 MiB   11.227 MiB       g = graph.construct_rag(arr)
+    18  507.363 MiB    0.004 MiB       print g.rows[1]
+    19  507.371 MiB    0.008 MiB       print "RAG construction took %f secs " % (time.time() - t)
+    20                             
+    21  507.371 MiB    0.000 MiB       t = time.time()
+    22  506.730 MiB   -0.641 MiB       g.random_merge(10)
+    23                                 #g.display()
+    24  506.730 MiB    0.000 MiB       print "Merging took %f secs " % (time.time() - t)
 ```
 
 
-**Custom Class**
+**Time**
 ```
-vighnesh@viggie-pc:skimage-graph > python size_test.py 10
-RSS = 10 MB
-VMS = 50 MB
-vighnesh@viggie-pc:skimage-graph > python size_test.py 100
-RSS = 10 MB
-VMS = 50 MB
-vighnesh@viggie-pc:skimage-graph > python size_test.py 1000
-RSS = 14 MB
-VMS = 53 MB
-vighnesh@viggie-pc:skimage-graph > python size_test.py 10000
-RSS = 45 MB
-VMS = 85 MB
-vighnesh@viggie-pc:skimage-graph > python size_test.py 100000
-RSS = 350 MB
-VMS = 390 MB
-
+RAG construction took 47.319908 secs 
+Merging took 23.145860 secs 
 ```
 
-**Networkx Graph**
-```
-vighnesh@viggie-pc:skimage-graph > python nx_test.py 10
-RSS = 16 MB
-VMS = 71 MB
-vighnesh@viggie-pc:skimage-graph > python nx_test.py 100
-RSS = 16 MB
-VMS = 71 MB
-vighnesh@viggie-pc:skimage-graph > python nx_test.py 1000
-RSS = 21 MB
-VMS = 76 MB
-vighnesh@viggie-pc:skimage-graph > python nx_test.py 10000
-RSS = 71 MB
-VMS = 126 MB
-vighnesh@viggie-pc:skimage-graph > python nx_test.py 100000
-RSS = 567 MB
-VMS = 621 MB
-```
 
