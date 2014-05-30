@@ -1,6 +1,7 @@
 import pygraphviz as pgv
 import random
 import rag_custom
+random.seed(1)
 
 class Graph(object):
 

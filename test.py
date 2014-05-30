@@ -1,7 +1,6 @@
 import time
 import numpy as np
-import graph_custom as graph
-
+import graph_nx  as graph
 
 
 try :
@@ -15,7 +14,8 @@ def test():
     arr = np.load("../data/watershed.npy")
     t = time.time()
     g = graph.construct_rag(arr)
-    print g.rows[1]
+    
+    
     print "RAG construction took %f secs " % (time.time() - t)
 
     t = time.time()
