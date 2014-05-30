@@ -31,4 +31,30 @@ RAG construction took 47.319908 secs
 Merging took 23.145860 secs 
 ```
 
+## Networx Graph Class
 
+**Memory**
+```
+Line #    Mem usage    Increment   Line Contents
+================================================
+    12   23.023 MiB    0.000 MiB   @profile
+    13                             def test():
+    14  500.918 MiB  477.895 MiB       arr = np.load("../data/watershed.npy")
+    15  500.918 MiB    0.000 MiB       t = time.time()
+    16  530.703 MiB   29.785 MiB       g = graph.construct_rag(arr)
+    17                                 
+    18                                 
+    19  530.719 MiB    0.016 MiB       print "RAG construction took %f secs " % (time.time() - t)
+    20                             
+    21  530.719 MiB    0.000 MiB       t = time.time()
+    22  517.906 MiB  -12.812 MiB       g.random_merge(10)
+    23                                 #g.display()
+    24  517.906 MiB    0.000 MiB       print "Merging took %f secs " % (time.time() - t)
+
+```
+
+**Time**
+```
+RAG construction took 117.332280 secs 
+Merging took 1.238992 secs
+```
