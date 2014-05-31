@@ -1,6 +1,6 @@
 import time
 import numpy as np
-import graph_nx  as graph
+import graph_lil  as graph
 
 
 try :
@@ -20,7 +20,7 @@ def test():
 
     t = time.time()
     g.random_merge(10)
-    #g.display()
+    g.display()
     print "Merging took %f secs " % (time.time() - t)
 
     
