@@ -3,6 +3,7 @@ import random
 import rag_custom
 random.seed(1)
 
+
 class Graph(object):
 
     def __init__(self, n):
@@ -28,7 +29,6 @@ class Graph(object):
 
         self.rows[i][j] = wt
         self.rows[j][i] = wt
-
 
     def merge(self, i, j):
         # we merge i into j and delete the contents of i
@@ -77,12 +77,12 @@ class Graph(object):
         g.layout('circo')
         g.draw(name)
 
-    def random_merge(self,minimum):
+    def random_merge(self, minimum):
 
         n = self.vertex_count
         while n > minimum:
             i = random.randint(0, self.vertex_count - 1)
-            if len(self.rows[i].keys()) > 0:
+            if len(self.rows[i]) > 0:
                 k = random.choice(self.rows[i].keys())
                 self.merge(i, k)
                 n -= 1
@@ -90,4 +90,3 @@ class Graph(object):
 
 def construct_rag(arr):
     return rag_custom.construct_rag_3d_custom(arr)
-

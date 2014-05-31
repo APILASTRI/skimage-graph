@@ -1,21 +1,21 @@
 import time
 import numpy as np
-import graph_lil  as graph
+import graph_custom as graph
 
 
-try :
+try:
     profile
 except NameError:
     def profile(x):
         return x
+
 
 @profile
 def test():
     arr = np.load("../data/watershed.npy")
     t = time.time()
     g = graph.construct_rag(arr)
-    
-    
+
     print "RAG construction took %f secs " % (time.time() - t)
 
     t = time.time()
@@ -23,5 +23,5 @@ def test():
     g.display()
     print "Merging took %f secs " % (time.time() - t)
 
-    
+
 test()
