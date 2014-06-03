@@ -18,10 +18,10 @@ def test():
 
     print "RAG construction took %f secs " % (time.time() - t)
 
-    #print g.max_size
+    # print g.max_size
     t = time.time()
     g.random_merge(10)
-    #print g.max_size
+    # print g.max_size
     print "Merging took %f secs " % (time.time() - t)
 
 
