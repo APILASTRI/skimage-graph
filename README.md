@@ -85,3 +85,30 @@ Line #    Mem usage    Increment   Line Contents
 RAG construction took 689.007435 secs 
 Merging took 201.393969 secs
 ```
+
+## CSR Graph Class
+**Memory**
+```
+Line #    Mem usage    Increment   Line Contents
+================================================
+    13   20.031 MiB    0.000 MiB   @profile
+    14                             def test():
+    15  498.074 MiB  478.043 MiB       arr = np.load("../data/watershed.npy")
+    16  498.074 MiB    0.000 MiB       t = time.time()
+    17  500.281 MiB    2.207 MiB       g = graph.construct_rag(arr)
+    18                             
+    19  500.293 MiB    0.012 MiB       print "RAG construction took %f secs " % (time.time() - t)
+    20                             
+    21                                 #print g.max_size
+    22  500.293 MiB    0.000 MiB       t = time.time()
+    23  825.211 MiB  324.918 MiB       g.random_merge(10)
+    24                                 #print g.max_size
+    25  825.211 MiB    0.000 MiB       print "Merging took %f secs " % (time.time() - t)
+
+```
+
+**Time**
+```
+RAG construction took 5.593051 secs 
+Merging took 9.319996 secs
+```
