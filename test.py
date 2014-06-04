@@ -1,6 +1,6 @@
 import time
 import numpy as np
-import graph_csr as graph
+import graph_custom as graph
 
 
 try:
@@ -10,7 +10,7 @@ except NameError:
         return x
 
 
-@profile
+#@profile
 def test():
     arr = np.load("../data/watershed.npy")
     t = time.time()
@@ -21,6 +21,7 @@ def test():
     # print g.max_size
     t = time.time()
     g.random_merge(10)
+    g.display()
     # print g.max_size
     print "Merging took %f secs " % (time.time() - t)
 
