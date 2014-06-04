@@ -10,7 +10,7 @@ except NameError:
         return x
 
 
-#@profile
+@profile
 def test():
     arr = np.load("../data/watershed.npy")
     t = time.time()
