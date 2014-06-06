@@ -104,7 +104,7 @@ def construct_rag_3d_csr(cnp.int32_t[:, :, :] arr):
     h = arr.shape[2]
 
     n = np.amax(arr) + 1
-    cdef cnp.int_t[:, :] g = np.zeros((n, n), dtype=int)
+    g = sparse.dok_matrix((n,n), dtype = int)
 
     i = 0
     while i < l - 1:

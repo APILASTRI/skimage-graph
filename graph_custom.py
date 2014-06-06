@@ -21,6 +21,7 @@ class Graph(object):
                 if key < i:
                     print "(%d,%d) -> %d" % (i, key, self.rows[i][key])
 
+    @profile
     def make_edge(self, i, j, wt):
         try:
             self.rows[i][j]
@@ -37,6 +38,7 @@ class Graph(object):
     def get_weight(self,i,j):
         return self.rows[i][j]
 
+    @profile
     def merge(self, i, j):
 
         if not self.has_edge(i, j):
