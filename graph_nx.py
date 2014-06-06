@@ -23,6 +23,7 @@ class Graph(nx.Graph):
     def make_edge(self, i, j, wt):
         self.add_edge(i, j, weight=wt)
 
+    @profile
     def merge(self, i, j):
 
         if not self.has_edge(i, j):

@@ -1,9 +1,13 @@
+# cython: profile=True
+
 import numpy as np
 cimport numpy as cnp
 from scipy import sparse
 import graph_csr
+cimport cython
 
 
+@cython.profile(False)
 cdef inline max(cnp.int32_t a, cnp.int32_t b):
     if a > b:
         return a
@@ -95,6 +99,7 @@ def merge(g, cnp.int32_t x, cnp.int32_t y):
     g.array_size = g.array_size + n
 
 
+@cython.profile(False)
 def construct_rag_3d_csr(cnp.int32_t[:, :, :] arr):
     cdef Py_ssize_t l, b, h, i, j, k
     cdef cnp.int32_t current, next
@@ -104,7 +109,7 @@ def construct_rag_3d_csr(cnp.int32_t[:, :, :] arr):
     h = arr.shape[2]
 
     n = np.amax(arr) + 1
-    g = sparse.dok_matrix((n,n), dtype = int)
+    g = sparse.dok_matrix((n, n), dtype=int)
 
     i = 0
     while i < l - 1:

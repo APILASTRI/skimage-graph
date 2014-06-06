@@ -1,9 +1,13 @@
+# cython: profile=True
+
 import numpy as np
 cimport numpy as cnp
 import pygraphviz as pgv
 import graph_lil
+cimport cython
 
 
+@cython.profile(False)
 cdef inline max(cnp.int_t a, cnp.int_t b):
     if a > b:
         return a
@@ -30,14 +34,18 @@ cdef add_edge(object[:] rows, object[:] data, Py_ssize_t i, Py_ssize_t j, cnp.in
     data[j] = np.insert(data[j], index, wt)
 
 
+@cython.profile(False)
 def add_edge_py(rows, data, i, j, w):
     add_edge(rows, data, i, j, w)
 
 
+@cython.profile(False)
 def merge_node_py(rows, data, x, y):
     merge_node(rows, data, x, y)
 
 # assumes nodes have edge between them
+
+
 cdef merge_node(object[:] rows, object[:] data, cnp.int_t x, cnp.int_t y):
 
     # disconnect all nodes connected to i and connect them to j
@@ -175,6 +183,7 @@ cdef merge_node(object[:] rows, object[:] data, cnp.int_t x, cnp.int_t y):
     data[x] = np.empty(0, dtype=np.int)
 
 
+@cython.profile(False)
 def construct_rag_3d_lil(cnp.int32_t[:, :, :] arr):
     cdef Py_ssize_t l, b, h, i, j, k
     cdef cnp.int32_t current, next

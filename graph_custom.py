@@ -31,11 +31,10 @@ class Graph(object):
         self.rows[i][j] = wt
         self.rows[j][i] = wt
 
-    
-    def neighbors(self,i):
+    def neighbors(self, i):
         return self.rows[i].keys()
-        
-    def get_weight(self,i,j):
+
+    def get_weight(self, i, j):
         return self.rows[i][j]
 
     @profile
@@ -43,8 +42,7 @@ class Graph(object):
 
         if not self.has_edge(i, j):
             raise ValueError('Cant merge non adjacent nodes')
-            
-        
+
         # print "before ",self.order()
         for x in self.neighbors(i):
             if x == j:
@@ -52,7 +50,7 @@ class Graph(object):
             w1 = self.get_weight(x, i)
             w2 = -1
             if self.has_edge(x, j):
-                w2 = self.get_weight(x,j)
+                w2 = self.get_weight(x, j)
 
             w = max(w1, w2)
 
@@ -60,7 +58,6 @@ class Graph(object):
 
         self.remove_node(i)
         # print "after",self.order()
-
 
     def draw(self, name):
         g = pgv.AGraph()
@@ -75,18 +72,17 @@ class Graph(object):
         g.layout('circo')
         g.draw(name)
 
-
-    def has_edge(self,i,j):
-        try :
+    def has_edge(self, i, j):
+        try:
             self.rows[i][j]
             return True
         except KeyError:
             return False
-            
-    def remove_node(self,x):
+
+    def remove_node(self, x):
         for i in self.neighbors(x):
             del self.rows[i][x]
-            
+
         self.rows[x] = {}
 
     def random_merge(self, minimum):
@@ -98,9 +94,6 @@ class Graph(object):
                 k = random.choice(self.rows[i].keys())
                 self.merge(i, k)
                 n -= 1
-                
-
-
 
 
 def construct_rag(arr):
